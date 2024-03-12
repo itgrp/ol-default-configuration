@@ -59,7 +59,7 @@ echo -e "#\n# Allow only root from localhost or domain admins from any host\n+:r
 echo "Set template homedir and defalt domain."
 
 sed -i 's/^template homedir = .*$/template homedir = \/home\/%U/' /etc/samba/smb.conf
-sed -i 's/^winbind use default domain = .*$/winbind use default domain = yes/' /etc/samba/smb.c
+sed -i 's/^winbind use default domain = .*$/winbind use default domain = yes/' /etc/samba/smb.conf
 
 echo "Restart SAMBA".
 
