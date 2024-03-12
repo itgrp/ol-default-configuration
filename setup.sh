@@ -7,7 +7,7 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-echo "Installing necessary package."
+echo "Installing necessary packages."
 
 dnf -y install vim-enhanced realmd samba samba-common samba-winbind-clients samba-common-tools samba-winbind-krb5-locator oddjob oddjob-mkhomedir bash-completion bind-utils krb5-workstation 2>&1 > /dev/null
 
