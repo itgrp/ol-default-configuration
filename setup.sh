@@ -23,14 +23,14 @@ setenforce 0 2>&1 > /dev/null
 echo "Enter active directory domain to join (eg. itgrp.dk)"
 read -p "Domain: " domain
 
-domain=$(echo "$domain" | tr '[:lower:]' '[:upper:]')
+upper_domain=$(echo "$domain" | tr '[:lower:]' '[:upper:]')
 
 echo "Enter domain username without domain."
 echo "For this to work, make sure that DNS servers are DC IP's."
 
 read -p "Username: " username
 
-kinit $username@$domain
+kinit $username@$upper_domain
 
 echo "Setting IP address".
 echo "Leave blank to try to auto-detect. Will only work with one interface."
@@ -48,7 +48,7 @@ fi
 
 echo "Joining domain."
 
-realm join --membership-software=samba --client-software=winbind itgrp.dk
+realm join --membership-software=samba --client-software=winbind $domain
 
 echo "Changing default login mechanism."
 
@@ -73,7 +73,7 @@ systemctl restart winbind
 
 echo "Setting up sudoers."
 
-echo -e "%domain\ admins           ALL=(ALL)       NOPASSWD:ALL" > /etc/sudoers.d/itgrp
+echo -e "%domain\ admins           ALL=(ALL)       NOPASSWD:ALL" > /etc/sudoers.d/$domain
 
 echo "Set default bash settings."
 
