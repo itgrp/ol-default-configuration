@@ -42,8 +42,8 @@ if [ -z "$ipaddr" ]
   then
     echo "$(ip addr show dev $(ip r | grep -oP 'default.*dev \K\S*') | grep -oP '(?<=inet )[^/]*(?=/)') $(hostname -f) $(hostname -s)" >> /etc/hosts
   else
-    read -p "Hostname (without itgrp.dk): " hostname
-    echo "$ipaddr $hostname.itgrp.dk $hostname" >> /etc/hosts
+    read -p "Hostname (without domain): " hostname
+    echo "$ipaddr $hostname.$domain $hostname" >> /etc/hosts
 fi
 
 echo "Joining domain."
