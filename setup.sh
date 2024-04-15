@@ -20,12 +20,19 @@ echo "Set SELinux policy to permissive."
 sed -i s/^SELINUX=.*$/SELINUX=permissive/ /etc/selinux/config
 setenforce 0 2>&1 > /dev/null
 
+echo "Enter active directory domain to join (eg. itgrp.dk)"
+read -p "Domain: " domain
+
+domain=$(echo "$domain" | tr '[:lower:]' '[:upper:]')
+
 echo "Enter domain username without domain."
 echo "For this to work, make sure that DNS servers are DC IP's."
 
 read -p "Username: " username
 
-kinit $username@ITGRP.DK
+kinit $username@$domain
+
+exit
 
 echo "Setting IP address".
 echo "Leave blank to try to auto-detect. Will only work with one interface."
