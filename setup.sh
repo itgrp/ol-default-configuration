@@ -32,8 +32,6 @@ read -p "Username: " username
 
 kinit $username@$domain
 
-exit
-
 echo "Setting IP address".
 echo "Leave blank to try to auto-detect. Will only work with one interface."
 
