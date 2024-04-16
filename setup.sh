@@ -73,7 +73,7 @@ systemctl restart winbind
 
 echo "Setting up sudoers."
 
-echo -e "%domain\ admins           ALL=(ALL)       NOPASSWD:ALL" > /etc/sudoers.d/$domain
+echo -e "%domain\ admins           ALL=(ALL)       NOPASSWD:ALL" > /etc/sudoers.d/domain-admins
 
 echo "Set default bash settings."
 
